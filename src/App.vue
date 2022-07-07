@@ -118,7 +118,7 @@ export default {
             setTimeout(() => {
               cardList.value[cardOne.position].visible = false
               cardList.value[cardTwo.position].visible = false
-            },2000)
+            },1000)
           }
 
           userSelection.value.length = 0
