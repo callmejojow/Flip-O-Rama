@@ -88,11 +88,19 @@ export default {
     const flipCard = (payload) => {
       cardList.value[payload.position].visible = true
 
-      if(userSelection.value[0]){
+      if (userSelection.value[0]){
+        if (userSelection.value[0].position === payload.position 
+            && userSelection.value[0].faceValue === payload.faceValue
+        )
+         {
+           return
+        } 
+        else {
         userSelection.value[1] = payload
-      } else{
+        }
+      } else {
         userSelection.value[0] = payload
-      }
+      } 
     }
 
     watch(
