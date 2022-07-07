@@ -1,5 +1,6 @@
 <template>
-  <h1>Flip-O-Rama</h1>
+  <h1 class="sr-only">Flip-O-Rama</h1>
+  <img src="../public/image/flip-o-rama-title.png" alt="Flip-O-Rama" class="title">
   <section class="game-board">
     <AllCard 
       v-for="(card, index) in cardList" 
@@ -12,7 +13,7 @@
     />
   </section>
   <h2>{{ status }}</h2>
-  <button @click="restartGame">Restart Game</button>
+  <button @click="restartGame" class="button"><img src="../public/image/restart.svg"/> Restart Game</button>
 </template>
 
 <script>
@@ -62,7 +63,7 @@ export default {
       })
     }
 
-    const cardItems = [1,2,3,4,5,6,7,8]
+    const cardItems = ['bat','candy','cauldron','cupcake','moon','ghost','pumpkin','witch-hat']
 
     cardItems.forEach(item => {
        cardList.value.push({
@@ -138,22 +139,97 @@ export default {
 }
 </script>
 
+
 <style>
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+html {
+  margin-top: 0;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+h1 {
+  margin-top: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  padding-top: 60px 0;
   color: #2c3e50;
-  margin-top: 60px;
+  background-image: url('../public/image/page-bg.png');
+  background-color: #00070c;
+  color: #fff;
 }
+
+/*.status {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+}*/
 
 .game-board{
   display: grid;
-  grid-template-columns:100px 100px 100px 100px;
-  grid-template-rows:100px 100px 100px 100px;
-  grid-column-gap: 30px;
-  grid-row-gap: 30px;
+  grid-template-columns:repeat(4, 120px);
+  grid-template-rows:repeat(4, 120px);
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
   justify-content: center;
+}
+
+@media screen and (min-width: 500px) {
+  .game-board {
+    grid-template-columns: repeat(4, 90px);
+    grid-template-rows: repeat(4, 90px);
+  }
+}
+@media screen and (min-width: 600px) {
+  .game-board {
+    grid-template-columns: repeat(4, 120px);
+    grid-template-rows: repeat(4, 120px);
+  }
+}
+
+.title{
+  padding-bottom: 30px;
+}
+
+.button{
+  background-color: orange;
+  color: white;
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.button img {
+ padding-right: 5px;
+}
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
 }
 </style>
