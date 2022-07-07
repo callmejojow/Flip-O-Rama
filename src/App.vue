@@ -12,11 +12,11 @@
     />
   </section>
   <h2>{{ status }}</h2>
-  <!-- <p>Remaining Pairs: {{remainingPairs}} </p> -->
-
+  <button @click="shuffleCards">Shuffle Cards</button>
 </template>
 
 <script>
+import _ from 'lodash'
 import { ref,watch,computed } from 'vue'
 import AllCard from './components/AllCard'
 
@@ -44,6 +44,11 @@ export default {
 
       return remainingCards / 2
     })
+
+    const shuffleCards = () => {
+      cardList.value = _.shuffle(cardList.value)
+    }
+
 
     for (let i = 0; i < 16; i++){
       cardList.value.push({
@@ -92,7 +97,8 @@ export default {
       flipCard,
       userSelection,
       status,
-      remainingPairs
+      remainingPairs,
+      shuffleCards
     }
   }
 }
