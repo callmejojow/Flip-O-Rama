@@ -2,11 +2,9 @@
 	<div class="card" :class="flippedStyles" @click="selectCard">
 		<div class="card-face is-front">
 			<img :src="`/image/${value}.png`" :alt="value"/>
-			<img class="icon-checkmark" src ="/image/checkmark.svg" />
+			<img v-if="matched" class="icon-checkmark" src ="/image/checkmark.svg" />
 		</div>
-		<div class="card-face is-back">
-			Back
-		</div>
+		<div class="card-face is-back"></div>
 	</div>
 </template>
 
@@ -35,12 +33,12 @@ export default {
 	},
 
 	setup(props, context){
-		
-		const flippedStyles = computed (() => {
-			if (props.visible) {
-				return 'is-flipped'
-			}
-		})
+
+		const flippedStyles = computed(() => {
+      if (props.visible) {
+        return 'is-flipped'
+      }
+    })
 
 		const selectCard = () => {
 			context.emit('select-card',{
