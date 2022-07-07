@@ -1,7 +1,7 @@
 <template>
   <h1 class="sr-only">Flip-O-Rama</h1>
   <img src="../public/image/flip-o-rama-title.png" alt="Flip-O-Rama" class="title">
-  <section class="game-board">
+  <transition-group tag="section" class="game-board" name="shuffle-card">
     <AllCard 
       v-for="(card, index) in cardList" 
       :key="`card-${index}`" 
@@ -11,7 +11,7 @@
       :matched="card.matched"
       @select-card="flipCard"
     />
-  </section>
+  </transition-group>
   <h2>{{ status }}</h2>
   <button @click="restartGame" class="button"><img src="../public/image/restart.svg"/> Restart Game</button>
 </template>
@@ -207,6 +207,10 @@ h1 {
 
 .title{
   padding-bottom: 30px;
+}
+
+.shuffle-card-move {
+  transition: transform 0.8s ease-in;
 }
 
 .button{

@@ -38,6 +38,7 @@ export default {
       if (props.visible) {
         return 'is-flipped'
       }
+      return ''
     })
 
 		const selectCard = () => {
