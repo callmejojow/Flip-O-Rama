@@ -62,16 +62,29 @@ export default {
       })
     }
 
+    const cardItems = [1,2,3,4,5,6,7,8]
 
-    for (let i = 0; i < 16; i++){
-      cardList.value.push({
-        value: i,
-        visible: false,
-        position: i,
+    cardItems.forEach(item => {
+       cardList.value.push({
+        value: item,
+        visible: true,
+        position: null,
         matched:false
       })
-    }
+       cardList.value.push({
+        value: item,
+        visible: true,
+        position: null,
+        matched:false
+      })
+    })
 
+    cardList.value = cardList.value.map((card,index) =>{
+      return {
+        ...card,
+        position:index
+      }
+    })
     const flipCard = (payload) => {
       cardList.value[payload.position].visible = true
 
