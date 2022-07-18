@@ -4,7 +4,7 @@
   <section class="description">
     <p>Welcome to Flip-O-Rama</p>
     <p>A fun game created by Jolie Wang</p>
-    <p>for my dearest son Edward</p>
+    <p>For my dearest son Edward</p>
   </section>
   <transition-group tag="section" class="game-board" name="shuffle-card">
     <AllCard 
