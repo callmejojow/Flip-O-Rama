@@ -1,10 +1,14 @@
 <template>
   <h1 class="sr-only">Flip-O-Rama</h1>
-  <img src="../public/image/flip-o-rama-title.png" alt="Flip-O-Rama" class="title">
+    <img src="../public/image/flip-o-rama-title.png" alt="Flip-O-Rama" class="title">
+  <section class="description">
+    <p>Welcome to Flip-O-Rama</p>
+    <p>A fun game created for my dearest son Edward</p>
+  </section>
   <transition-group tag="section" class="game-board" name="shuffle-card">
     <AllCard 
-      v-for="(card, index) in cardList" 
-      :key="`card-${index}`" 
+      v-for="card in cardList" 
+      :key="`${card.value}-${card.variant}`" 
       :value="card.value"
       :visible="card.visible"
       :position="card.position"
@@ -13,7 +17,8 @@
     />
   </transition-group>
   <h2>{{ status }}</h2>
-  <button @click="restartGame" class="button"><img src="../public/image/restart.svg"/> Restart Game</button>
+  <button v-if="newPlayer" @click="startGame" class="button"><img src="../public/image/play.svg"/> Start Game</button>
+  <button v-else @click="restartGame" class="button"><img src="../public/image/restart.svg"/> Restart Game</button>
 </template>
 
 <script>
@@ -33,9 +38,16 @@ export default {
   setup(){
     const cardList = ref([])
     const userSelection = ref([])
+    const newPlayer = ref(true)
+
+    const startGame = () =>{
+      newPlayer.value = false
+      restartGame()
+    }
+
     const status = computed(()=>{
       if(remainingPairs.value === 0){
-        return 'Player wins!'
+        return 'You win!'
       } else {
         return `Remaining Pairs: ${remainingPairs.value}` 
       }
@@ -48,12 +60,8 @@ export default {
       return remainingCards / 2
     })
 
-    const shuffleCards = () => {
-      cardList.value = _.shuffle(cardList.value)
-    }
-
     const restartGame = () => {
-      shuffleCards()
+      cardList.value = _.shuffle(cardList.value)
 
       cardList.value = cardList.value.map((card, index) =>{
         return {
@@ -70,13 +78,15 @@ export default {
     cardItems.forEach(item => {
        cardList.value.push({
         value: item,
+        variant: 1,
         visible: false,
         position: null,
         matched:false
       })
        cardList.value.push({
         value: item,
-        visible: false,
+        variant: 2,
+        visible: true,
         position: null,
         matched:false
       })
@@ -139,8 +149,9 @@ export default {
       userSelection,
       status,
       remainingPairs,
-      shuffleCards,
       restartGame,
+      startGame,
+      newPlayer,
     }
   }
 }
@@ -157,6 +168,7 @@ body {
 
 html {
   margin-top: 0;
+  height: 100%;
 }
 
 a {
@@ -172,6 +184,12 @@ h1 {
   margin-top: 0;
 }
 
+h2 {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 32px;
+  letter-spacing: 1.25px;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -181,6 +199,10 @@ h1 {
   color: #2c3e50;
   background-image: url('../public/image/page-bg.png');
   background-color: #00070c;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
   color: #fff;
 }
 
@@ -204,34 +226,64 @@ h1 {
     grid-template-columns: repeat(4, 90px);
     grid-template-rows: repeat(4, 90px);
   }
+  .title {
+    width: 300px;
+  }
 }
 @media screen and (min-width: 600px) {
   .game-board {
     grid-template-columns: repeat(4, 120px);
     grid-template-rows: repeat(4, 120px);
   }
+
+  .title {
+    width: 400px;
+  }
 }
 
 .title{
-  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+p{
+  color: gray;
+  letter-spacing: 1px;
+  font-size: 18px;
 }
 
 .shuffle-card-move {
   transition: transform 0.8s ease-in;
 }
 
+.description {
+  font-family: 'Bebas Neue', cursive;
+  margin-bottom: 30px;
+}
+
 .button{
   background-color: orange;
   color: white;
-  padding: 0.75rem 0.5rem;
+  padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 1.2rem;
+  border: 0;
+  border-radius: 10px;
 }
 
 .button img {
  padding-right: 5px;
+}
+
+.button:hover {
+ background-color: #F97613;
+}
+
+.button:focus {
+ background-color: #F96B00;
 }
 .sr-only{
   position: absolute;
