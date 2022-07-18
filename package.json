@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@vue/cli-plugin-eslint": "^5.0.6",
+    "canvas-confetti": "^1.5.1",
     "core-js": "^3.8.3",
     "lodash": "^4.17.21",
     "vue": "^3.2.13"

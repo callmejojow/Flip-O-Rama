@@ -21,6 +21,8 @@ import _ from 'lodash'
 import { ref,watch,computed } from 'vue'
 import AllCard from './components/AllCard'
 
+import { launchConfetti } from './utilities/confetti'
+
 /* eslint-disable */
 
 export default {
@@ -126,6 +128,11 @@ export default {
       },
       { deep:true }
     )
+    watch(remainingPairs, currentValue => {
+      if (currentValue === 0){
+        launchConfetti()
+      }
+    })
     return {
       cardList,
       flipCard,
