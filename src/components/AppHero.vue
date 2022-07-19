@@ -21,7 +21,7 @@
 .description p {
   margin: 0;
   font-size: 1rem;
-  padding-bottom: 30px;
+  margin-bottom: 30px;
 }
 .title {
   padding-bottom: 30px;

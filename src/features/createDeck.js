@@ -9,7 +9,7 @@ const initDeck = deckData => {
       variant: 1,
       visible: false,
       position: null,
-      matched: false
+      matched: false,
     })
 
     cardList.value.push({
@@ -17,7 +17,7 @@ const initDeck = deckData => {
       variant: 2,
       visible: true,
       position: null,
-      matched: false
+      matched: false,
     })
   })
 }
