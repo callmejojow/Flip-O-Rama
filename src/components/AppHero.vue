@@ -13,7 +13,10 @@
 
 <style module>
 .description {
-  font-family: 'Titillium Web', sans-serif;
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 1px;
+  font-size: 16px;
+  color: gray;
 }
 .description p {
   margin: 0;

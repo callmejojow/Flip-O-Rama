@@ -47,7 +47,7 @@ export default {
   justify-content: center;
   margin: 0 auto 30px;
   font-weight: bold;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: 'Bebas Neue', cursive;
   font-weight: bold;
   font-size: 1rem;
   border: 0;

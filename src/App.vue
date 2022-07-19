@@ -124,7 +124,7 @@ a:hover {
   text-decoration: underline;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Bebas Neue', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -133,8 +133,9 @@ a:hover {
   padding: 60px 0;
 }
 .status {
-  font-family: 'Titillium Web', sans-serif;
+  font-family: 'Bebas Neue', cursive;
   font-size: 18px;
+  letter-spacing: 1.2px;
   text-transform: uppercase;
 }
 .game-board {
